@@ -1,0 +1,31 @@
+name: Generate Fragenkatalog
+
+on:
+  push:
+    branches: main 
+    paths-ignore:
+      - 'Fragenkatalog.md'
+  pull_request:
+    branches: main 
+    paths-ignore:
+      - 'Fragenkatalog.md'
+
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run some comands
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          chmod +x ./generate.sh
+          ./generate.sh
+          git add Fragenkatalog.md
+          git status
+          git commit -m "Generated Fragenkatalog"
+          git push
