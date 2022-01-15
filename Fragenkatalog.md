@@ -1,6 +1,6 @@
 #Fragenkatalog
 ## Data Warehousing
-Fragen aus der Datei [Vorlesungsinhalt](./Fragenkatalog/01%20Data%20Warehousing/Vorlesungsinhalt.md).
+Fragen aus der Datei [Vorlesungsinhalt-VL1](./Fragenkatalog/01%20Data%20Warehousing/Vorlesungsinhalt-VL1.md).
 <details><summary><b>Definition: Datenbank</b></summary>
 <table><tr><td>
 
@@ -106,4 +106,4 @@ TODO
 
 
 
-Generiert am Sat Jan 15 11:32:39 UTC 2022
+Generiert am Sat Jan 15 11:47:23 UTC 2022
