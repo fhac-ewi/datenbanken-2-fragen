@@ -104,6 +104,192 @@ TODO
 </td></tr></table>
 </details>
 
+## Klausurvorbereitung
+Fragen aus der Datei [Prüfungsthemen](./Fragenkatalog/99%20Klausurvorbereitung/Prüfungsthemen.md).
+<details><summary><b>Data Warehouse</b></summary>
+<table><tr><td>
+
+TODO
+- Eigenschaften
+- Welche Daten kommen da rein?
+- Besonderheit dieser Daten?
+- Wie kann das Schema aufgebaut sein?
+- Welche Operation führt man da durch?
+
+</td></tr></table>
+</details>
+<details><summary><b>OLAP</b></summary>
+<table><tr><td>
+
+TODO
+
+</td></tr></table>
+</details>
+<details><summary><b>OLTP</b></summary>
+<table><tr><td>
+
+TODO
+
+</td></tr></table>
+</details>
+<details><summary><b>Schwächen von relationalen Datenbanken</b></summary>
+<table><tr><td>
+
+TODO
+
+</td></tr></table>
+</details>
+<details><summary><b>Multicurrency / Optimistische Nebenläufigkeit</b></summary>
+<table><tr><td>
+
+TODO
+
+</td></tr></table>
+</details>
+<details><summary><b>Kategorien NoSQL</b></summary>
+<table><tr><td>
+
+TODO
+
+</td></tr></table>
+</details>
+<details><summary><b>Key/Value Speicher </b></summary>
+<table><tr><td>
+
+TODO
+- Aufbau
+- Funktion
+
+</td></tr></table>
+</details>
+<details><summary><b>Konzepte DynamoDB</b></summary>
+<table><tr><td>
+
+TODO
+
+</td></tr></table>
+</details>
+<details><summary><b>CordRing</b></summary>
+<table><tr><td>
+
+TODO
+
+</td></tr></table>
+</details>
+<details><summary><b>Spaltenbasierten bzw. Wide Column Databases (Zusammensetzung der KEy Value Speicher)</b></summary>
+<table><tr><td>
+
+TODO
+
+</td></tr></table>
+</details>
+<details><summary><b>CAP Theorem</b></summary>
+<table><tr><td>
+
+TODO
+
+</td></tr></table>
+</details>
+<details><summary><b>HDFS</b></summary>
+<table><tr><td>
+
+TODO
+- Eigenschaften
+- Konzept
+- HBASE
+
+</td></tr></table>
+</details>
+<details><summary><b>Map & Reduce </b></summary>
+<table><tr><td>
+
+TODO
+- Besonderheiten 
+- Java Signatur aufschreiben
+- Welche Parameter würde ein Word Count bekommen? Umschreiben
+
+</td></tr></table>
+</details>
+<details><summary><b>Lokalitätsprinzip</b></summary>
+<table><tr><td>
+
+TODO
+
+</td></tr></table>
+</details>
+<details><summary><b>RDD Konzepte (lazy)</b></summary>
+<table><tr><td>
+
+TODO
+
+</td></tr></table>
+</details>
+<details><summary><b>Yarn Sheduler (?)</b></summary>
+<table><tr><td>
+
+TODO
+
+</td></tr></table>
+</details>
+<details><summary><b>SPARK </b></summary>
+<table><tr><td>
+
+TODO
+
+</td></tr></table>
+</details>
+<details><summary><b>PIG Vorteile (Datenflussorientierte Scriptsprache)</b></summary>
+<table><tr><td>
+
+TODO
+
+</td></tr></table>
+</details>
+<details><summary><b>HIVE erlaubt SQL Nutzung</b></summary>
+<table><tr><td>
+
+TODO
+
+</td></tr></table>
+</details>
+<details><summary><b>Kassandra</b></summary>
+<table><tr><td>
+
+TODO
+- Eigenschaften
+- Partitioner
+- Wie würde man eine Zeitreihen Datenbank anlegen?
+
+</td></tr></table>
+</details>
+<details><summary><b>MongoDB</b></summary>
+<table><tr><td>
+
+TODO
+
+</td></tr></table>
+</details>
+<details><summary><b>Entscheidungsbaum/DB-Scan</b></summary>
+<table><tr><td>
+
+TODO
+
+</td></tr></table>
+</details>
+<details><summary><b>Clustering</b></summary>
+<table><tr><td>
+
+TODO
+
+</td></tr></table>
+</details>
+<details><summary><b>Sloppy Quorum</b></summary>
+<table><tr><td>
+
+TODO 
+</td></tr></table>
+</details>
 
 
-Generiert am Sat Jan 15 11:47:23 UTC 2022
+
+Generiert am Tue Jan 18 08:27:01 UTC 2022
