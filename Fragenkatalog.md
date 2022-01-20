@@ -78,6 +78,79 @@ TODO
 </details>
 
 ## NoSQL-Datenbanken
+Fragen aus der Datei [Cassandra](./Fragenkatalog/03%20NoSQL-Datenbanken/Cassandra.md).
+<details><summary><b>Cassandra</b></summary>
+<table><tr><td>
+
+
+</td></tr></table>
+</details>
+<details><summary><b>was ist Cassandra ?</b></summary>
+<table><tr><td>
+
+Eine NoSql-Datenbank die auf der AP Seite einzuordnen ist
+
+</td></tr></table>
+</details>
+<details><summary><b>Eigenschaften</b></summary>
+<table><tr><td>
+
+
+- elastisch (wegen Chord-Ring Hinzuhame von weiteren Rechnern möglich, fast linear sklaierbar)
+- verteilt (Peer-to-Peer Chord Ring, kein fixer Einstiegspunkt)
+- skalierbar
+- spaltenorientiert
+- Fehlertolerant (Kein Master und Ausfallsicherheit durch Replikation)
+- einstellbare Konsistenz (dennoch bleibt es AP)
+- kann auch mit kleinen Clustern (1,3,5) Knoten betrieben werden
+
+</td></tr></table>
+</details>
+<details><summary><b>Motivation</b></summary>
+<table><tr><td>
+
+
+HBase hat sehr viele Server (zookeeper, HDFS, Data Nodes, etc.) und unter 7 Knoten macht es wenig Sinn. Dazu kommt das es einen Master-Slave Ansatz verfolgt der zum Single-Point-of Failure führen kann (!). Mit dem Chord-Ring, den wir schon in Dynamo-DB kennengelernt haben können wird Cassandra seinen verteilten Ansatz umsetzen.
+
+
+</td></tr></table>
+</details>
+<details><summary><b>Konzepte</b></summary>
+<table><tr><td>
+
+
+- Consisten Hashin
+- Vektoruhren
+- Gossip Protocol
+- Hinted Handoff
+- etc 
+
+Sind aus dem Dynamo Paper entnommen
+
+</td></tr></table>
+</details>
+<details><summary><b>Datenmodell</b></summary>
+<table><tr><td>
+
+
+- 3 dimensionale "Hast-Table"
+- Ein Keyspace beinhaltet Column Families und regelt deren Repilkationsart
+- Jede Zeile besitzt einen Key und besteht aus Spalten (Namen müssen nicht vorher festgelegt sein)
+- Jede Spalte hat einen Namen und einen value Wert + Timestamp
+- optinal: Time to Live (TTL)
+
+
+
+</td></tr></table>
+</details>
+<details><summary><b>Eselsbrücke</b></summary>
+<table><tr><td>
+
+Wenn Dynamo-DB und BigTable's ein Kind hätten, dann wäre es Cassandra ;)
+
+</td></tr></table>
+</details>
+
 Fragen aus der Datei [Vorlesungsinhalt](./Fragenkatalog/03%20NoSQL-Datenbanken/Vorlesungsinhalt.md).
 <details><summary><b>Nothing here</b></summary>
 <table><tr><td>
@@ -292,4 +365,4 @@ TODO
 
 
 
-Generiert am Tue Jan 18 08:27:01 UTC 2022
+Generiert am Thu Jan 20 20:41:40 UTC 2022
