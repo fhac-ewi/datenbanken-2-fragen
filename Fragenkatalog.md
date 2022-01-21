@@ -151,6 +151,54 @@ Wenn Dynamo-DB und BigTable's ein Kind hätten, dann wäre es Cassandra ;)
 </td></tr></table>
 </details>
 
+Fragen aus der Datei [MongoDB](./Fragenkatalog/03%20NoSQL-Datenbanken/MongoDB.md).
+
+
+<details><summary><b>MongoDb</b></summary>
+<table><tr><td>
+
+
+- Abgleitet aus Humongous 
+- NoSQl
+- Dokumentorientiert (JSON Dokumente)
+- Schmemfrei
+- skalierbar
+- open source
+- high performance
+
+Daraus folgt:
+
+- Keine Zeilen
+- Keine Transaktionen 
+- keine Joins
+- keine refrentielle Integrität
+
+</td></tr></table>
+</details>
+<details><summary><b>Datenmodell</b></summary>
+<table><tr><td>
+
+
+- JSON -> geordnete Menge an Keys mit entsprechenden Values
+- Indexe sind zentral -> Map/Reduce Ansätze
+- auto Sharding
+- intern binär (BSON)
+
+
+Fazit:
+
+- passt gut zu AJAX und REST 
+- embedded documents liefern eine Umgehungstatbestand zu dem Fehlen von Joints
+- serialisierte Objekte entsprechen dem Modell der Programmiersprache 
+
+-> leider hoher Grad an Denormalisierung -> Information wird mehrfach gespeichert 
+
+
+
+
+</td></tr></table>
+</details>
+
 Fragen aus der Datei [Vorlesungsinhalt](./Fragenkatalog/03%20NoSQL-Datenbanken/Vorlesungsinhalt.md).
 <details><summary><b>Nothing here</b></summary>
 <table><tr><td>
@@ -365,4 +413,4 @@ TODO
 
 
 
-Generiert am Thu Jan 20 20:41:40 UTC 2022
+Generiert am Fri Jan 21 14:03:47 UTC 2022
