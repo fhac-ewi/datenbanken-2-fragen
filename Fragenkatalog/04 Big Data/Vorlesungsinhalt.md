@@ -13,13 +13,17 @@
 # MVCC
 
 # Scale Up vs Scale out
-Scale up                           Scale out    
------------------                  ------------------- 
-Hinzufügen von CPU & RAm           Hinzufügen von weiteren Servern/Knoten             
-Upgrade -> Ausfallzeit             kontrollierte Nebenläufigkeit             
-Grenzkosten oft hoch               Replikation als Basisprinzip             
+Scale up              
+----------------- 
+Hinzufügen von CPU & RAm           
+Upgrade -> Ausfallzeit                    
+Grenzkosten oft hoch               
 
-
+Scale out
+-----------------
+Hinzufügen von weiteren Servern/Knoten
+kontrollierte Nebenläufigkeit    
+Replikation als Basisprinzip 
 # Skalierung in RDBMS
 
 # Was ist Big Data ?
