@@ -248,15 +248,15 @@ Fragen aus der Datei [Vorlesungsinhalt](./Fragenkatalog/04%20Big%20Data/Vorlesun
 
 Scale up              
 ----------------- 
-Hinzufügen von CPU & RAm           
-Upgrade -> Ausfallzeit                    
-Grenzkosten oft hoch               
+- Hinzufügen von CPU & RAm           
+- Upgrade -> Ausfallzeit                    
+- Grenzkosten oft hoch               
 
 Scale out
 -----------------
-Hinzufügen von weiteren Servern/Knoten
-kontrollierte Nebenläufigkeit    
-Replikation als Basisprinzip 
+- Hinzufügen von weiteren Servern/Knoten
+- kontrollierte Nebenläufigkeit    
+- Replikation als Basisprinzip 
 </td></tr></table>
 </details>
 <details><summary><b>Skalierung in RDBMS</b></summary>
@@ -480,4 +480,4 @@ TODO
 
 
 
-Generiert am Fri Jan 21 15:36:56 UTC 2022
+Generiert am Fri Jan 21 15:37:46 UTC 2022
