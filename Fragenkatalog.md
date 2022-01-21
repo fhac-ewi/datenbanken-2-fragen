@@ -246,13 +246,17 @@ Fragen aus der Datei [Vorlesungsinhalt](./Fragenkatalog/04%20Big%20Data/Vorlesun
 <details><summary><b>Scale Up vs Scale out</b></summary>
 <table><tr><td>
 
-Scale up                           Scale out    
------------------                  ------------------- 
-Hinzufügen von CPU & RAm           Hinzufügen von weiteren Servern/Knoten             
-Upgrade -> Ausfallzeit             kontrollierte Nebenläufigkeit             
-Grenzkosten oft hoch               Replikation als Basisprinzip             
+Scale up              
+----------------- 
+Hinzufügen von CPU & RAm           
+Upgrade -> Ausfallzeit                    
+Grenzkosten oft hoch               
 
-
+Scale out
+-----------------
+Hinzufügen von weiteren Servern/Knoten
+kontrollierte Nebenläufigkeit    
+Replikation als Basisprinzip 
 </td></tr></table>
 </details>
 <details><summary><b>Skalierung in RDBMS</b></summary>
@@ -476,4 +480,4 @@ TODO
 
 
 
-Generiert am Fri Jan 21 15:29:52 UTC 2022
+Generiert am Fri Jan 21 15:36:56 UTC 2022
