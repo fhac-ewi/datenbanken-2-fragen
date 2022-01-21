@@ -209,10 +209,73 @@ TODO
 
 ## Big Data
 Fragen aus der Datei [Vorlesungsinhalt](./Fragenkatalog/04%20Big%20Data/Vorlesungsinhalt.md).
-<details><summary><b>Nothing here</b></summary>
+<details><summary><b>Big Data</b></summary>
 <table><tr><td>
 
-TODO
+
+</td></tr></table>
+</details>
+<details><summary><b>Entwicklung </b></summary>
+<table><tr><td>
+
+
+- Die Menge der Daten wird größer
+- 2012 weniger als eine Sekunde braucht Google um ca. 50 Millionen Seiten zur effektive Suche zu indizieren
+
+</td></tr></table>
+</details>
+<details><summary><b>Skalierbarkei</b></summary>
+<table><tr><td>
+
+
+
+</td></tr></table>
+</details>
+<details><summary><b>Konistenz vs. Verfügbarkeit</b></summary>
+<table><tr><td>
+
+
+</td></tr></table>
+</details>
+<details><summary><b>MVCC</b></summary>
+<table><tr><td>
+
+
+</td></tr></table>
+</details>
+<details><summary><b>Scale Up vs Scale out</b></summary>
+<table><tr><td>
+
+Scale up                           Scale out    
+-----------------                  ------------------- 
+Hinzufügen von CPU & RAm           Hinzufügen von weiteren Servern/Knoten             
+Upgrade -> Ausfallzeit             kontrollierte Nebenläufigkeit             
+Grenzkosten oft hoch               Replikation als Basisprinzip             
+
+
+</td></tr></table>
+</details>
+<details><summary><b>Skalierung in RDBMS</b></summary>
+<table><tr><td>
+
+
+</td></tr></table>
+</details>
+<details><summary><b>Was ist Big Data ?</b></summary>
+<table><tr><td>
+
+
+</td></tr></table>
+</details>
+<details><summary><b>NoSql</b></summary>
+<table><tr><td>
+
+
+</td></tr></table>
+</details>
+<details><summary><b>CAP-Theorem</b></summary>
+<table><tr><td>
+
 </td></tr></table>
 </details>
 
@@ -413,4 +476,4 @@ TODO
 
 
 
-Generiert am Fri Jan 21 14:03:47 UTC 2022
+Generiert am Fri Jan 21 15:29:52 UTC 2022
