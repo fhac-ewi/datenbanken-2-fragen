@@ -15,15 +15,15 @@
 # Scale Up vs Scale out
 Scale up              
 ----------------- 
-Hinzufügen von CPU & RAm           
-Upgrade -> Ausfallzeit                    
-Grenzkosten oft hoch               
+- Hinzufügen von CPU & RAm           
+- Upgrade -> Ausfallzeit                    
+- Grenzkosten oft hoch               
 
 Scale out
 -----------------
-Hinzufügen von weiteren Servern/Knoten
-kontrollierte Nebenläufigkeit    
-Replikation als Basisprinzip 
+- Hinzufügen von weiteren Servern/Knoten
+- kontrollierte Nebenläufigkeit    
+- Replikation als Basisprinzip 
 # Skalierung in RDBMS
 
 # Was ist Big Data ?
