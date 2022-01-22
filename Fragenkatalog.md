@@ -211,8 +211,14 @@ TODO
 
 ## Big Data
 Fragen aus der Datei [Vorlesungsinhalt](./Fragenkatalog/04%20Big%20Data/Vorlesungsinhalt.md).
-<details><summary><b>Big Data</b></summary>
+<details><summary><b>Eigenschaften von Big Data</b></summary>
 <table><tr><td>
+
+
+Charakterisiert durch die 3Vs:
+- Volume (meint die Datenmenge)
+- Variety (Verschiedenartigkeit, also strukturiert vs. Unstrukturiert)
+- Velocity (dynamischer Eingang von Daten, z.B. Netzfrequenzüberwachung)
 
 
 </td></tr></table>
@@ -226,22 +232,21 @@ Fragen aus der Datei [Vorlesungsinhalt](./Fragenkatalog/04%20Big%20Data/Vorlesun
 
 </td></tr></table>
 </details>
-<details><summary><b>Skalierbarkei</b></summary>
+<details><summary><b>Warum gibt es immer mehr Daten?</b></summary>
 <table><tr><td>
 
 
+- Durch Soziale Netzwerke, mobile Endgeräte und das IoT gibt es immer mehr Daten
 
 </td></tr></table>
 </details>
-<details><summary><b>Konistenz vs. Verfügbarkeit</b></summary>
+<details><summary><b>Welche Anforderungen hat BigData an eine Datenbank?</b></summary>
 <table><tr><td>
 
 
-</td></tr></table>
-</details>
-<details><summary><b>MVCC</b></summary>
-<table><tr><td>
-
+- Die vielfältigen Daten (Variety) müssen gespeichert werden, ohne das wir wissen was wir speichern (Text, Bild, Video, etc.)
+- Menge der unstrukturierten Daten nimmt exponentiell zu
+- hohe skalierbarkeit (scale out) für wachsendes Datenvolumen und variety
 
 </td></tr></table>
 </details>
@@ -259,29 +264,43 @@ Scale out
 - Hinzufügen von weiteren Servern/Knoten
 - kontrollierte Nebenläufigkeit    
 - Replikation als Basisprinzip 
+
 </td></tr></table>
 </details>
 <details><summary><b>Skalierung in RDBMS</b></summary>
 <table><tr><td>
 
 
-</td></tr></table>
-</details>
-<details><summary><b>Was ist Big Data ?</b></summary>
-<table><tr><td>
-
+- nur begrenzt möglich
+- Verfolgen einen zentralen Ansatz (Großrechner im Zentrum)
+- Sperren vermindern den Durchsatz und damit die Verfügbarkeit
+- Deshalb ist BigData bzw. skalierung nur schwer möglich in RDBMS
 
 </td></tr></table>
 </details>
 <details><summary><b>NoSql</b></summary>
 <table><tr><td>
 
+-	Steht für not only SQL
+-	Nicht relational
+-	Schemafrei
+-	Verteilt (Scale out)
+-	Open Source
+-	Beruht auf dem BASE Prinzip (gegenüber ACID Prinzip der RDBMS):
+  - Basic Available
+  - Soft State
+  - Eventual Consistency
 
 </td></tr></table>
 </details>
 <details><summary><b>CAP-Theorem</b></summary>
 <table><tr><td>
 
+
+Steht für Consistency, Availability, Partition Tolerance:
+- Consistency: Alle Clients können die selben Daten sehen/lesen
+- Availability: Jeder Client kann zu jedem Zeitpunkt lesen und schreiben
+- Partition Tolerance: Das DBMS funktioniert obwohl einige Knoten nicht verfügbar sind
 </td></tr></table>
 </details>
 
@@ -482,4 +501,4 @@ TODO
 
 
 
-Generiert am Sat Jan 22 10:34:56 UTC 2022
+Generiert am Sat Jan 22 18:23:41 UTC 2022
