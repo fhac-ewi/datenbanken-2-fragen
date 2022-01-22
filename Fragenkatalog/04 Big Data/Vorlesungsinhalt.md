@@ -48,9 +48,9 @@ Scale out
 -	Verteilt (Scale out)
 -	Open Source
 -	Beruht auf dem BASE Prinzip (gegenüber ACID Prinzip der RDBMS):
-  - Basic Available
-  - Soft State
-  - Eventual Consistency
+    - Basic Available
+    - Soft State
+    - Eventual Consistency
 
 # CAP-Theorem
 
