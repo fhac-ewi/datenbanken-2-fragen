@@ -61,10 +61,12 @@ TODO
 
 </td></tr></table>
 </details>
-<details><summary><b>Mögliche Aufbauten von Data Warehourses</b></summary>
+<details><summary><b>Mögliche Aufbauten von Data Warehouses</b></summary>
 <table><tr><td>
 
-TODO
+- Star Schema
+- Snowflake
+- Fact Constellations
 </td></tr></table>
 </details>
 
@@ -480,4 +482,4 @@ TODO
 
 
 
-Generiert am Fri Jan 21 15:37:46 UTC 2022
+Generiert am Sat Jan 22 10:34:56 UTC 2022
