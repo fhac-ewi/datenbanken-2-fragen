@@ -34,5 +34,7 @@ Ein Datenbankmanagementsystem (DBMS) ist die Gesamtheit aller Programme zur Erze
 # Data Warehouse vs. klassisch verteilte Datenbank
 TODO
 
-# Mögliche Aufbauten von Data Warehourses
-TODO
+# Mögliche Aufbauten von Data Warehouses
+- Star Schema
+- Snowflake
+- Fact Constellations
