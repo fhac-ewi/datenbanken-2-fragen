@@ -287,9 +287,9 @@ Scale out
 -	Verteilt (Scale out)
 -	Open Source
 -	Beruht auf dem BASE Prinzip (gegenüber ACID Prinzip der RDBMS):
-  - Basic Available
-  - Soft State
-  - Eventual Consistency
+    - Basic Available
+    - Soft State
+    - Eventual Consistency
 
 </td></tr></table>
 </details>
@@ -501,4 +501,4 @@ TODO
 
 
 
-Generiert am Sat Jan 22 18:23:41 UTC 2022
+Generiert am Sat Jan 22 18:26:07 UTC 2022
