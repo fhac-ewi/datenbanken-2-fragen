@@ -267,6 +267,7 @@ Nachteile:
     - HDFS zur Replikation/ Speicherung
     - Zookeeper für Servermanagement und Meta Daten
     - Hive/ Pig für Abfragen
+    - Single Point of failure. Nach Ausfall des HMasters vergeht eine gewisse Zeit bis ein neuer HMaster aktiv ist
 </td></tr></table>
 </details>
 
@@ -618,4 +619,4 @@ TODO
 
 
 
-Generiert am Sun Jan 23 14:04:49 UTC 2022
+Generiert am Sun Jan 23 14:08:57 UTC 2022
