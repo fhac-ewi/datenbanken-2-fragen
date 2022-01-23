@@ -171,10 +171,10 @@ Fragen aus der Datei [Hadoop](./Fragenkatalog/03%20NoSQL-Datenbanken/Hadoop.md).
 
 - Write Once, Read Many
 - Basis ist die Unterscheidung von NameNodes und DataNodes
-    - NameNode ist der Master, der die Metadaten über das Dateisystem speichert (Zugriffsrechte, Data Directory)
-    - DataNodes bedienen Rad/ Write Requests der Clients. Die Clients holen sich beim NameNode die Meta Daten und greifen dann direkt auf die DataNodes zu
-            - Per Default speichern DataNodes Blöcke von 64 MB und 3 Replikas
-            - DataNodes senden einen Blockreport (Info über gespeicherte Blöcke) und einen Hearbeat (noch aktiv Zeichen) an NameNode
+  - NameNode ist der Master, der die Metadaten über das Dateisystem speichert (Zugriffsrechte, Data Directory)
+  - DataNodes bedienen Rad/ Write Requests der Clients. Die Clients holen sich beim NameNode die Meta Daten und greifen dann direkt auf die DataNodes zu
+    - Per Default speichern DataNodes Blöcke von 64 MB und 3 Replikas
+    - DataNodes senden einen Blockreport (Info über gespeicherte Blöcke) und einen Hearbeat (noch aktiv Zeichen) an NameNode
         
 </td></tr></table>
 </details>
@@ -593,4 +593,4 @@ TODO
 
 
 
-Generiert am Sun Jan 23 13:44:08 UTC 2022
+Generiert am Sun Jan 23 13:52:25 UTC 2022
