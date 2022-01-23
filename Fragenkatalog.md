@@ -242,6 +242,31 @@ Fragen aus der Datei [Hadoop](./Fragenkatalog/03%20NoSQL-Datenbanken/Hadoop.md).
 - Zookeeper koordiniert das gesamte verteilte System
     - Jeder HRegionServer erzeugt einen Eintrag beim Zookeeper, mit dessen Hilfe der HMaster die operativen HRegionServer findet. Diese Einträge werden über einen Heartbeat gepflegt und bei Ausbleiben gelöscht
     - Zookeeper sorgt mittels Heartbeat dafür, dass es immer nur einen aktiven HMaster gibt
+
+</td></tr></table>
+</details>
+<details><summary><b>HBase im CAP Theorem einordnen</b></summary>
+<table><tr><td>
+
+
+Ähnlich wie HDFS ebenfalls CP. HDFS wird zur Datenreplikation genutzt.
+
+</td></tr></table>
+</details>
+<details><summary><b>Vor- und Nachteile von HBase</b></summary>
+<table><tr><td>
+
+
+Vorteile:
+- Random Read und Writes
+- für sehr große Datenmengen
+
+Nachteile:
+- HBase-Architektur nur für die Datenverwaltung konzipiert
+- Auf andere Technologien angewiesen:
+    - HDFS zur Replikation/ Speicherung
+    - Zookeeper für Servermanagement und Meta Daten
+    - Hive/ Pig für Abfragen
 </td></tr></table>
 </details>
 
@@ -593,4 +618,4 @@ TODO
 
 
 
-Generiert am Sun Jan 23 13:52:25 UTC 2022
+Generiert am Sun Jan 23 14:04:49 UTC 2022
