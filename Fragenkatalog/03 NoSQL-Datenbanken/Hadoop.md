@@ -11,8 +11,8 @@
 - Basis ist die Unterscheidung von NameNodes und DataNodes
     - NameNode ist der Master, der die Metadaten über das Dateisystem speichert (Zugriffsrechte, Data Directory)
     - DataNodes bedienen Rad/ Write Requests der Clients. Die Clients holen sich beim NameNode die Meta Daten und greifen dann direkt auf die DataNodes zu
-        - Per Default speichern DataNodes Blöcke von 64 MB und 3 Replikas
-        - DataNodes senden einen Blockreport (Info über gespeicherte Blöcke) und einen Hearbeat (noch aktiv Zeichen) an NameNode
+            - Per Default speichern DataNodes Blöcke von 64 MB und 3 Replikas
+            - DataNodes senden einen Blockreport (Info über gespeicherte Blöcke) und einen Hearbeat (noch aktiv Zeichen) an NameNode
         
 # HDFS im CAP Theorem einordnen
 
