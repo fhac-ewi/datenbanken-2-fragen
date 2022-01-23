@@ -153,6 +153,98 @@ Wenn Dynamo-DB und BigTable's ein Kind hätten, dann wäre es Cassandra ;)
 </td></tr></table>
 </details>
 
+Fragen aus der Datei [Hadoop](./Fragenkatalog/03%20NoSQL-Datenbanken/Hadoop.md).
+<details><summary><b>Was ist Hadoop?</b></summary>
+<table><tr><td>
+
+
+- Hadoop umfasst ein Framework was nach Googles BigTable Vorbild reengineered wurde
+- Hadoop hat 2 wesentliche Schichten:
+    - Das verteilte File System HDFS und die darauf basierende Spaltenbasierte Datenbank HBase
+    - Die Laufzeitumgebung Map Reduce mit den Werkzeugen Pig, Hive...
+    
+</td></tr></table>
+</details>
+<details><summary><b>Datenmodell von HDFS</b></summary>
+<table><tr><td>
+
+
+- Write Once, Read Many
+- Basis ist die Unterscheidung von NameNodes und DataNodes
+    - NameNode ist der Master, der die Metadaten über das Dateisystem speichert (Zugriffsrechte, Data Directory)
+    - DataNodes bedienen Rad/ Write Requests der Clients. Die Clients holen sich beim NameNode die Meta Daten und greifen dann direkt auf die DataNodes zu
+            - Per Default speichern DataNodes Blöcke von 64 MB und 3 Replikas
+            - DataNodes senden einen Blockreport (Info über gespeicherte Blöcke) und einen Hearbeat (noch aktiv Zeichen) an NameNode
+        
+</td></tr></table>
+</details>
+<details><summary><b>HDFS im CAP Theorem einordnen</b></summary>
+<table><tr><td>
+
+
+- HDFS kann als CP System eingeordnet werden
+- Durch die Repliken ist es gegen ausfälle abgesichert
+- Die Konsistenz ist gegeben, weil HDFS eine Schreiboperation erst bestätigt, wenn N Anzahl an Replikas bei anderen DataNodes bestätigt wurden
+- Probem ist die Verfügbarkeit:
+    - NameNode ist Single Point of Failure. Wenn der NameNode ausfällt können alle Daten verloren gehen
+    
+</td></tr></table>
+</details>
+<details><summary><b>Vor- und Nachteile von HDFS</b></summary>
+<table><tr><td>
+
+
+- Vorteile
+    - sehr gutes Scale Out: einfach mehr DataNodes hinzufügen
+    - Preisgünstig, weil OpenSource und Commodity Hardware nutzbar
+    - für große Datenmengen geeignet
+    - für Batch Verarbeitung großer Dateien konzipiert
+    
+- Nachteile
+    - NameNode single point of failure
+    - NameNode nicht skalierbar. Nicht gut für kleine Daten
+    - Daten nicht veränderbar
+    - keine Record Lookups
+    
+</td></tr></table>
+</details>
+<details><summary><b>Was ist HBase?</b></summary>
+<table><tr><td>
+
+
+- HBase läuft on top von einem Hadoop Cluster
+- HBase erweitert Hadoop um die random Read/ Write Funktionalität
+- Daten können in vorhandene Datensätze eingefügt werden
+
+</td></tr></table>
+</details>
+<details><summary><b>Datenmodell von HBase</b></summary>
+<table><tr><td>
+
+
+- HBase ist eine Spaltenorientierte Datenbank die Key/ Value Paare speichert
+- Column Families fassen Daten ähnlichen Typs zusammen
+- Spalten werden Physisch nah gespeichert
+- Dadurch ist die Suche sehr schnell
+
+</td></tr></table>
+</details>
+<details><summary><b>Architektur</b></summary>
+<table><tr><td>
+
+
+- Region werden eine Menge von Zeilen zur speicherung zugewiesen
+    - HBase Tabellen werden z.B. so aufgeteilt, dass alle Spalten einer ColumnFamily in einer Region gespeichert sind
+- N Regions sind einem Region Server zugeteilt, der die Reads/ Writes managed
+- Der HMaster ist der Master Node, vergleichbar mit dem NameNode in HDFS
+    - Weißt Regions den Region Servern zu
+    - Update, Create, delete Tabellen
+- Zookeeper koordiniert das gesamte verteilte System
+    - Jeder HRegionServer erzeugt einen Eintrag beim Zookeeper, mit dessen Hilfe der HMaster die operativen HRegionServer findet. Diese Einträge werden über einen Heartbeat gepflegt und bei Ausbleiben gelöscht
+    - Zookeeper sorgt mittels Heartbeat dafür, dass es immer nur einen aktiven HMaster gibt
+</td></tr></table>
+</details>
+
 Fragen aus der Datei [MongoDB](./Fragenkatalog/03%20NoSQL-Datenbanken/MongoDB.md).
 
 
@@ -501,4 +593,4 @@ TODO
 
 
 
-Generiert am Sun Jan 23 13:36:24 UTC 2022
+Generiert am Sun Jan 23 13:44:08 UTC 2022
