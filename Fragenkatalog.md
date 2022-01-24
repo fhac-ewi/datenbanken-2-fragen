@@ -473,46 +473,161 @@ Komplexe Analysen zur Strategieplanung
 <table><tr><td>
 
 - Zentraler Ansatz (Großrechner)
-- Begrenzte Skalierbarkeit
+- Begrenzte Skalierbarkeit (Nur Scale up, kein Scale out)
 - Konsistenz als zentrales Paradigma
-- Folge: Satzsperren
+- Folge: Satzsperren -> geringerer Datendurchsatz
+
+Aus VL 3 Folie 144
+
+Versuch der Skalierung von RDBMS
+- Master-Slave-Ansatz
+  - Alle WRITEs gehen an den Master.
+  - Gelesen wird von den Replicas/Slaves.
+  - Problem: Replicas nicht direkt aktualisiert. READs könnten veraltete Daten lesen
+  - Problem: WRITEs nicht skalierbar.  
 
 </td></tr></table>
 </details>
-<details><summary><b>Multi-Version Concurrency Control (MVCC) / Optimistische Nebenläufigkeit</b></summary>
+<details><summary><b>Multi-Version Concurrency Control (MVCC)</b></summary>
 <table><tr><td>
 
-TODO
+- Optimistische Nebenläufigkeit
+- Ähnlich zu einem Versionskontrollsystem
+- Schreibzugriffe erzeugen neue Version der Daten
+- WRITEs deshalb ohne Sperren
+- UPDATEs (in Place) gibt es nicht -> WRITE mit neuer Versionsnummer
+- Folge: Hoher Datendurchsatz aufgrund wenigerer Sperren möglich
+
+Funktionsweise 
+- Nutzung von Zeitstempeln für Daten und Transaktionen
+- Lese- und Schreibzeitstempel je Version
+- Anhand der Zeitstempel Ermittlung der neusten Version; ggf. Abort der Schreiboperation
+
+Aus VL 3 Folie 145ff.
 
 </td></tr></table>
 </details>
-<details><summary><b>Kategorien NoSQL</b></summary>
+<details><summary><b>Big Data</b></summary>
 <table><tr><td>
 
-TODO
+- 3Vs
+  - Volume - herausfordernde Mengen
+  - Variety - Verschiedenartigkeit und nur partiell strukturiert
+  - Velocity - dynamischer Eingang von Daten und Ereignissen
+
+Aus VL 3 Folie 159
 
 </td></tr></table>
 </details>
-<details><summary><b>Key/Value Speicher </b></summary>
+<details><summary><b>NoSQL (Not only SQL)</b></summary>
 <table><tr><td>
 
-TODO
-- Aufbau
-- Funktion
+NoSQL sind skalierbare Datenbanken, die das Ziel haben, Datenmengen im Terabyte- oder sogar Peta-Bereich zu persistieren.
+
+Schlüsseleigenschaften
+- Nicht Relational
+- Schema-Frei
+- Verteilt und horizontal skalierbar (Scale out)
+- Open Source
+- Einfach bei Datenreplikation
+- Zumeist einfache Programmierschnittstellen
+- Verfolgt BASE (eventuell konsistent)
+
+Aus VL 3 Folie 169ff
 
 </td></tr></table>
 </details>
-<details><summary><b>Konzepte DynamoDB</b></summary>
+<details><summary><b>ACID vs BASE vs CAP</b></summary>
 <table><tr><td>
 
-TODO
+Konzepte von Datenbanken
+- ACID
+  - Atomarität (Ganze Transaktion erfolgreich oder gar nicht)
+  - Konsistenz (DB wird in valid Zustand hinterlassen)
+  - Isolation ()
+  - Dauerhaftigkeit (Committed = gespeichert, auch bei Stromausfall)
+- BASE    
+  - Basic Available (Anwendung funktioniert immer, manchmal mit geringerer Konsistenz)
+  - Soft State ()
+  - Eventual Consistency  (Irgendwann konsistent..)
+- CAP
+  - Consistency
+  - Availability
+  - Partition Tolerance
+    
+Aus VL 3 Folie 17x ff.
 
 </td></tr></table>
 </details>
-<details><summary><b>CordRing</b></summary>
+<details><summary><b>Überblick Populäre NoSQL Datenbanken</b></summary>
 <table><tr><td>
 
+- Key/Value Speicher
+  - Amazon DynamoDB (*)
+  - Redis  
+- Datei orientiert
+  - MongoDB (*)
+- Spalten orientiert
+  - Google Big Table
+  - Cassandra
+  - HBase
+    
+Aus VL 3 Folie 193
+
+</td></tr></table>
+</details>
+<details><summary><b>Key-Value-Speicher</b></summary>
+<table><tr><td>
+
+Aufbau wie eine Hashmap
+
+Funktion
+- Speicherung eines Wertes zu einem Schlüssel
+- Key meist gehasht
+- Schnittstellen: PUT, GET, DELETE
+- Scale Out möglich, da Key-Value-Paare auch verschiedenen Rechnern gespeichert werden können.
+
+Ansätze
+- Master-Directory
+  - Mehrere Nodes speichern die Key-Value-Paare.
+  - Master weiß, auf welchem Node welches Paar gespeichert ist.  
+  - Zugriff als Recursive Query (Master liefert Value) oder Iterative Query (Master liefert Namen des Nodes)
+- Fehlertoleranz
+  - Daten werden auf mehreren Nodes gespeichert
+- Load Balancing
+  - Master überwacht Auslastung und wählt infolgedessen den perfekten Node zum Einfügen
+
+
+
+</td></tr></table>
+</details>
+<details><summary><b>Chord-Ring</b></summary>
+<table><tr><td>
+
+- Alternative eines Key-Value-Speichers
+- Ermöglicht das Auffinden von Daten in einem verteilten Speicher (Auch bei Hinzunahme/Ausfall einzelner Knoten)
+
+Eigenschaften
+- Einfaches Konzept (beweisbare Korrektheit und kalkulierbare Performance)
+- Jeder Chord-Knoten benötigt nur Informationen über einen Teil der anderen Knoten
+- Lookups werden über Nachrichten mit anderen Knoten gelöst.
+
+Aus VL 4 Folie 230ff.
+
 TODO
+- Erklärung
+- Übungsaufgabe 
+
+
+</td></tr></table>
+</details>
+<details><summary><b>DynamoDB</b></summary>
+<table><tr><td>
+
+- Key-Value-Speicher mit PUT & GET
+- Verfolgt das Chord-Prinzip zum Auffinden der Knoten
+- Replikation zur Verbesserung der Ausfallsicherheit  
+- Virtual Nodes zur gleichmäßigeren Bestückung des Chord Rings -> Leistungsfähiger
 
 </td></tr></table>
 </details>
@@ -578,27 +693,39 @@ TODO
 
 </td></tr></table>
 </details>
-<details><summary><b>PIG Vorteile (Datenflussorientierte Scriptsprache)</b></summary>
+<details><summary><b>PIG (Tool)</b></summary>
 <table><tr><td>
 
+- Vorteile (Datenflussorientierte Scriptsprache)
 TODO
 
 </td></tr></table>
 </details>
-<details><summary><b>HIVE erlaubt SQL Nutzung</b></summary>
+<details><summary><b>HIVE (Tool)</b></summary>
 <table><tr><td>
 
+- erlaubt SQL Nutzung
 TODO
 
 </td></tr></table>
 </details>
-<details><summary><b>Kassandra</b></summary>
+<details><summary><b>Cassandra Framework</b></summary>
 <table><tr><td>
 
 TODO
 - Eigenschaften
 - Partitioner
 - Wie würde man eine Zeitreihen Datenbank anlegen?
+
+</td></tr></table>
+</details>
+<details><summary><b>Hadoop Framework</b></summary>
+<table><tr><td>
+
+- Nutzt HDFS und HBase
+- Laufzeitumgebung MapReduce mit verschiedenen Tools HIVE, PIG, Zookeeper
+- Open Source Variante der Google-Produkte
+- ...
 
 </td></tr></table>
 </details>
@@ -626,10 +753,18 @@ TODO
 <details><summary><b>Sloppy Quorum</b></summary>
 <table><tr><td>
 
-TODO 
+- Nicht alle Replicas eines Datensatzes müssen bei Schreibvorgängen aktualisiert werden. Es ist "schlampig"
+- Konfiguration über Tupel (N, R, W)
+- In Summe gibt es N Knoten (bzw. Replicas, die eine Kopie der Datei gespeichert haben).
+- Bei lesendem Zugriff müssen R Knoten antworten, damit Wert als gelesen gilt.
+- Bei schreibendem Zugriff müssen W Knoten den Schreibvorgang bestätigen.
+- Wenn R+W > N ist Konsistenz erfüllt.
+- Vorteil: Einzelne Knoten können temporär ausfallen.
+
+TODO VL4 Folie 270ff.
 </td></tr></table>
 </details>
 
 
 
-Generiert am Mon Jan 24 14:02:58 UTC 2022
+Generiert am Mon Jan 24 16:24:18 UTC 2022
