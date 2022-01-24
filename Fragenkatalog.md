@@ -445,28 +445,41 @@ TODO
 
 </td></tr></table>
 </details>
-<details><summary><b>OLAP</b></summary>
+<details><summary><b>OLTP (OnLine Transaction Processing)</b></summary>
 <table><tr><td>
 
-TODO
+Echtzeit Datenverarbeitung fürs Tagesgeschäft
+- Viele Änderungsoperationen
+- Zugriff auf einzelne Datensätze/Objekte
+- Zugriff durch Mitarbeiter (Viele Nutzer)
+- Zeitkritisch, immer aktuellste Daten
 
 </td></tr></table>
 </details>
-<details><summary><b>OLTP</b></summary>
+<details><summary><b>OLAP (OnLine Analytical Processing)</b></summary>
 <table><tr><td>
 
-TODO
+Komplexe Analysen zur Strategieplanung
+- Read only
+- Betrachtung der Gesamtheit/Aggregation von Daten
+- Erkenntnisse über Entwicklung des Unternehmens -> Strategieplanung
+- Zugriff durch Analysten (wenige Nutzer)
+- Zeit unkritisch, auch historische Daten akzeptabel
+
 
 </td></tr></table>
 </details>
 <details><summary><b>Schwächen von relationalen Datenbanken</b></summary>
 <table><tr><td>
 
-TODO
+- Zentraler Ansatz (Großrechner)
+- Begrenzte Skalierbarkeit
+- Konsistenz als zentrales Paradigma
+- Folge: Satzsperren
 
 </td></tr></table>
 </details>
-<details><summary><b>Multicurrency / Optimistische Nebenläufigkeit</b></summary>
+<details><summary><b>Multi-Version Concurrency Control (MVCC) / Optimistische Nebenläufigkeit</b></summary>
 <table><tr><td>
 
 TODO
@@ -619,4 +632,4 @@ TODO
 
 
 
-Generiert am Sun Jan 23 14:08:57 UTC 2022
+Generiert am Mon Jan 24 14:02:58 UTC 2022
