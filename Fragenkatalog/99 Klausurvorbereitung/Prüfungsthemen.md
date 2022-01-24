@@ -6,16 +6,29 @@ TODO
 - Wie kann das Schema aufgebaut sein?
 - Welche Operation führt man da durch?
 
-# OLAP
-TODO
+# OLTP (OnLine Transaction Processing)
+Echtzeit Datenverarbeitung fürs Tagesgeschäft
+- Viele Änderungsoperationen
+- Zugriff auf einzelne Datensätze/Objekte
+- Zugriff durch Mitarbeiter (Viele Nutzer)
+- Zeitkritisch, immer aktuellste Daten
 
-# OLTP
-TODO
+# OLAP (OnLine Analytical Processing)
+Komplexe Analysen zur Strategieplanung
+- Read only
+- Betrachtung der Gesamtheit/Aggregation von Daten
+- Erkenntnisse über Entwicklung des Unternehmens -> Strategieplanung
+- Zugriff durch Analysten (wenige Nutzer)
+- Zeit unkritisch, auch historische Daten akzeptabel
+
 
 # Schwächen von relationalen Datenbanken
-TODO
+- Zentraler Ansatz (Großrechner)
+- Begrenzte Skalierbarkeit
+- Konsistenz als zentrales Paradigma
+- Folge: Satzsperren
 
-# Multicurrency / Optimistische Nebenläufigkeit
+# Multi-Version Concurrency Control (MVCC) / Optimistische Nebenläufigkeit
 TODO
 
 # Kategorien NoSQL
