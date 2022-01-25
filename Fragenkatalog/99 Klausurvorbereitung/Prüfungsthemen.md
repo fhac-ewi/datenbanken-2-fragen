@@ -385,13 +385,22 @@ TODO
 # Clustering
 TODO
 
-# Sloppy Quorum
+# Quorum und sloppy Quorum
 - Nicht alle Replicas eines Datensatzes müssen bei Schreibvorgängen aktualisiert werden. Es ist "schlampig"
 - Konfiguration über Tupel (N, R, W)
 - In Summe gibt es N Knoten (bzw. Replicas, die eine Kopie der Datei gespeichert haben).
 - Bei lesendem Zugriff müssen R Knoten antworten, damit Wert als gelesen gilt.
 - Bei schreibendem Zugriff müssen W Knoten den Schreibvorgang bestätigen.
 - Wenn R+W > N ist Konsistenz erfüllt.
+- Vorteil: Die Performance steigt
+
+- Problem1: wenn es zu bestimmten Partitionen kommt kann es dazu komme das keine Write/Read Quoren erreicht werden können
+- Ausfall von einzelen Knoten kann zum Problem werden. 
+
+Eine Lösung: Sloppy Quorum
+- Beim Ausfall von Knoten, können andere ihre Aufgabe übernehmen
+- Quorum-Bedingung wird erfüllt, aber wir erlauben Knoten die nicht im besitzt der richtige Information sind
+- Hinted Handoff wir angewandt: Kommt der Knoten wieder zurück und bekommt eine Hint vom Vertreter das er wieder seine Rolle als Replika wahrnehmen soll.
 - Vorteil: Einzelne Knoten können temporär ausfallen.
 
 TODO VL4 Folie 270ff.
