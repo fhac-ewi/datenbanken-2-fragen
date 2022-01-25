@@ -1,10 +1,37 @@
+# Definition: Datenbank
+Eine Datenbank ist ein integrierter, persistenter Datenbestand einschließlich aller relevanten Informationen über die dargestellte Information (Metadaten), der einer Gruppe von Benutzern zur Verfügung steht und durch eine spezielle Software möglichst redundanzfrei verwaltetet wird.
+
+# Definition: Datenbankmanagementsystem (DBMS)
+Ein Datenbankmanagementsystem (DBMS) ist die Gesamtheit aller Programme zur Erzeugung, Verwaltung und Manipulation einer Datenbank.
+
 # Data Warehouse
-TODO
-- Eigenschaften
-- Welche Daten kommen da rein?
-- Besonderheit dieser Daten?
-- Wie kann das Schema aufgebaut sein?
-- Welche Operation führt man da durch?
+- Eine übergreifende, Zentrale Datenbasis
+- Optimiert für Einfüge- und Lese-Operationen, nicht für Transaktionen
+- Extract, Transform, Load (ETL) Tools
+- eine entscheidungsunterstützende Datenbank die zusätzlich und separat von den Datenbanken des Unternehmens gepflegt wird
+- Alle relevanten Unternehmensdaten werden gesammelt und verdichtet
+- Diese gilt es zu strukturieren (Data-Mining, Data-Analysis)
+- Bietet eine globale Perspektive unter Verwendung historischer Daten
+- Schafft durch OLAP Werkzeuge die Basis für Business Intelligence
+- Data Warehouses können aus kleineren Einheiten, sogenannten Data Marts gebildet werden
+- Data Marts sind kleine Einheiten des Unternehmens wie z.B. Marketing, Verkauf etc.
+- Dies kann Integrationsprobleme auf höheren Ebenen verursachen
+
+Aufbau
+- Star Schema
+- Snowflake
+- Fact Constellations
+
+Welche Daten kommen da rein?
+
+Besonderheit dieser Daten?
+
+Wie kann das Schema aufgebaut sein?
+
+Welche Operation führt man da durch?
+
+Aus VL1
+
 
 # OLTP (OnLine Transaction Processing)
 Echtzeit Datenverarbeitung fürs Tagesgeschäft
@@ -149,14 +176,15 @@ TODO
 - Virtual Nodes zur gleichmäßigeren Bestückung des Chord Rings -> Leistungsfähiger
 
 # Spaltenbasierten bzw. Wide Column Databases (Zusammensetzung der KEy Value Speicher)
-TODO
+- Zu einem Key (Row-Number) mehrere Werte stehen.
+- 2 Dimensionen (quasi doppelte HashMap)
 
 # CAP Theorem
 TODO
 
 # HDFS (Dateisystem)
 - Open Source Variante des Google File Systems
-- Cluster besteht aus aus
+- Cluster besteht aus
   - Namenode: Master eines Namespace im Dateisystem & Zugriffskontrolle
   - Datanode: Bedienen Anfragen (READ, WRITE) auf Basis der Anweisungen des Namenode
 - Zentraler Verzeichnisbaum, verteilte Daten  
@@ -246,8 +274,6 @@ public class ReduceClass extends
 - Zeitliche Lokalität - Was zuletzt gelesen wurde, wird mit hoher Wahrscheinlichkeit erneut benutzt.
 - Räumliche Lokalität - Benachbarte Adressbereiche werden angesprochen.
 
-# RDD Konzepte (lazy)
-TODO
 
 # Yarn Sheduler (Yet Another Resource Negotiator)
 - Framework zur Verwaltung von Map-Reduce Tasks im Cluser
@@ -258,20 +284,48 @@ TODO
 
 Aus VL8 Folie 416
 
+
+# RDD (Resilient Distributed Dataset) Konzepte (lazy)
+- robuster verteilter Datensatz
+- RDD-Objekte liegen im Arbeitsspeicher
+- RDD-Objekte sind nach Erzeugung unveränderlich
+
 # SPARK 
-TODO
+- Gedacht für Analysen! (Lesender Zugriff)
+- Für Batch und Interaktive Anwendungen gedacht
+- In Echtzeit Daten als Stream
+- Hohe Geschwindigkeit -> Dank Arbeitsspeicher
+- Keine persistente Datenspeicherung -> Alles geschieht im Arbeitsspeicher
 
-# PIG (Abfragesprache)
-- Vorteile (Datenflussorientierte Scriptsprache)
+Aus VL12
+
+# PIG (Abfragesprache für Hadoop)
+- Datenflussorientierte Scriptsprache
 - Für Programmierer (zum Abruf einzelner Tupel)
-TODO
+- Client für Hadoop
+- Alternative zu Map/Reduce
+- Ermöglicht Joins
+- Operationen
+  - LOAD - Laden von Daten
+  - FOREACH - Projektion
+  - GROUP - Gruppierung
+  - DUMP - Ausgabe
+  - AVG/MIN/MAX/.. - Aggregationen
+  
+Aus VL 9 Folie 450ff.
 
-# HIVE (Abfragesprache)
+# HIVE (Abfragesprache für Hadoop)
 - erlaubt SQL Nutzung
 - Für Data Analysts
-TODO
+- Client für Hadoop
+- Ermöglicht Abfragen, wie von relationalen Datenbanken bekannt
+- Hive Query Language ähnlich zu SQL
+- Im Prinzip ein Data Warehouse
+  
+Aus VL 9 Folie 465ff.
 
 # HBase (Datenbank)
+- Idee CP (Consistency & Partition Tolerance)
 - Basiert auf HDFS & adressiert dessen Nachteile
 - Sinnvoll für Random Read/Write
 - Versuch einer spaltenorientierten Datenbank
@@ -289,23 +343,36 @@ TODO
 
 
 # Cassandra Datenbank
+- Idee AP (Availability & Partition Tolerance)
 - Spaltenbasiert
 - Nutzt Chord-Ring
+- Kein Master, sondern gleichberechtigte Knoten  
+- Deshalb: Skalierbare & fehlertolerante Datenbank
+- Consistency für WRITE und READ getrennt einstellbar (Definition, wie viele Replicas abgefragt werden.)
+- WRITE often, READ less
 
 TODO
 - Eigenschaften
-- Partitioner
+- Partitioner ?????
 - Wie würde man eine Zeitreihen Datenbank anlegen?
 
 
 # MongoDB 
-TODO
+- Positioniert sich zwischen Key-Value-Speichern und RDBMS
 - Dokumente im JSON Format (Je Dokument Key/Value Speicher)
+- Schemafrei, Skalierbar
+- Open Source
 
+Fazit
+- Ansatz passt zu REST
+- Serialisierte Objekte entsprechen dem Modell der Programmiersprache  
+- Nachteil: Hoher Grad an Denormalisierung.
+- Folge: Informationen mehrfach gespeichert.
+
+Aus VL12 Folie 735ff.
 
 # Entscheidungsbaum/DB-Scan
 TODO
-- Ist damit der Merkle-Tree gemeint? VL4 Folie 279
 
 # Clustering
 TODO
