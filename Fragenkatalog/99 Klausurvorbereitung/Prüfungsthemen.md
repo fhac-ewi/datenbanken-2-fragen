@@ -353,7 +353,15 @@ TODO
 
 TODO
 - Eigenschaften
-- Partitioner ?????
+
+Partitioner:
+- Random Partitioner: Die Schlüssel werden gleichmäßig über die Nodes verteilt (wie bei DynamoDB und default in Cassandra)
+- Order Perserving Partitioner: berücksichtigt die Ordnung der Schlüssel (gut für Bereichabfragen, kann Lastverteilung unterlaufen)
+
+Replikation:
+- Simple Strategy: Replikas im Uhrzeigersinn (wie bei DynamoDB)
+- Networkt Topology Strategy: Replikas werden auf anderen Racks oder Datenzentren verteilt 
+
 - Wie würde man eine Zeitreihen Datenbank anlegen?
 
 
