@@ -154,43 +154,132 @@ TODO
 # CAP Theorem
 TODO
 
-# HDFS
+# HDFS (Dateisystem)
+- Open Source Variante des Google File Systems
+- Cluster besteht aus aus
+  - Namenode: Master eines Namespace im Dateisystem & Zugriffskontrolle
+  - Datanode: Bedienen Anfragen (READ, WRITE) auf Basis der Anweisungen des Namenode
+- Zentraler Verzeichnisbaum, verteilte Daten  
+
+Aus VL6 Folie 323ff.
+
+
+
 TODO
 - Eigenschaften
 - Konzept
-- HBASE
 
-# Map & Reduce 
+# Map & Reduce
+- Scaling-out-Ansatz (mehrere Computer bearbeiten Teil der Anfrage)
+- Parallele Verarbeitung
+- Input Key-Value-Paare & Output Key-ValuePaare
+- Signaturen
+  - Mapper: `(K1, V1) -> list(K2, V2)`
+  - Reducer: `(K2, list(V2)) -> list(K3, V3)`
+  - Java Signatur: `void map(K1 key, V1 value, Mapper.Context context) throws IOException, InterruptedException`
+
 TODO
 - Besonderheiten 
-- Java Signatur aufschreiben
-- Welche Parameter würde ein Word Count bekommen? Umschreiben
+
+Beispiel Word Count [see](https://github.com/V3lop5/Hadoop-WordCount/blob/master/src/main/java/MapClass.java)
+```java
+/**
+ * Mapper
+ * 
+ * Konvertiert die Key-Value-Paare aus den Dateien in eine Liste von Key-Value-Paaren.
+ * 
+ * Erstellt aus Input (key: long, value: text)
+ *      (42, "Hallo Welt")
+ *      (43, "Hallo Peter")
+ * den Output [(key: text, value: int)]
+ *      [("Hallo", 1), ("Welt", 1)]
+ *      [("Hallo", 1), ("Peter", 1)]
+ */
+public class MapClass extends Mapper<LongWritable, Text, Text, IntWritable> {
+    
+  private final static IntWritable one = new IntWritable(1);
+  private Text word = new Text();
+  
+  public void map( LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+    String line = value.toString();
+    StringTokenizer itr = new StringTokenizer(line.toLowerCase(Locale.ROOT).replace('.', ' '));
+    while (itr.hasMoreTokens()) {
+      word.set(itr.nextToken());
+      context.write(word, one);
+    }
+  }
+}
+
+/**
+ * Reducer
+ * 
+ * Nimmt Ergebnis des Mappers entgegen. 
+ * Zu jedem Key werden alle Values als Liste hinzugefügt.
+ * 
+ * Erstellt aus der Ausgabe des Mappers/Input (key: text, value: List[int])
+ *      ("Hallo", [1, 1])
+ *      ("Welt", [1])
+ *      ("Peter", [1])
+ *      
+ * den Output (key: text, value: int)
+ *      ("Hallo", 2)
+ *      ("Welt", 1)
+ *      ("Peter", 1)
+ */
+public class ReduceClass extends
+        Reducer<Text, IntWritable, Text, IntWritable> {
+  private IntWritable count = new IntWritable();
+  @Override
+  protected void reduce(Text key, Iterable<IntWritable> values,
+                        Context context) throws IOException, InterruptedException {
+    int sum = 0;
+    for (IntWritable value : values) {
+      sum += value.get();
+    }
+    count.set(sum);
+    context.write(key, count);
+  }
+}
+```
 
 # Lokalitätsprinzip
-TODO
+- Zeitliche Lokalität - Was zuletzt gelesen wurde, wird mit hoher Wahrscheinlichkeit erneut benutzt.
+- Räumliche Lokalität - Benachbarte Adressbereiche werden angesprochen.
 
 # RDD Konzepte (lazy)
 TODO
 
-# Yarn Sheduler (?)
-TODO
+# Yarn Sheduler (Yet Another Resource Negotiator)
+- Framework zur Verwaltung von Map-Reduce Tasks im Cluser
+- Komponenten
+  - Global Resource Manager (RM): Übernahme des Scheduling
+  - Per-server Node Manager (NM): Überwachung und Anbindung eines einzelnen Nodes
+  - Per-application (job) Application Master (AM): Container zur Kapselung der Kommunikation zwischen RM und NM
+
+Aus VL8 Folie 416
 
 # SPARK 
 TODO
 
-# PIG (Tool)
+# PIG (Abfragesprache)
 - Vorteile (Datenflussorientierte Scriptsprache)
+- Für Programmierer (zum Abruf einzelner Tupel)
 TODO
 
-# HIVE (Tool)
+# HIVE (Abfragesprache)
 - erlaubt SQL Nutzung
+- Für Data Analysts
 TODO
 
-# Cassandra Framework
+# HBase (Datenbank)
+- Basiert auf HDFS & adressiert dessen Nachteile
+- Sinnvoll für Random Read/Write
+- Versuch einer spaltenorientierten Datenbank
+- HBase besteht aus
+  - Region Server: Stellt Datenregionen bereit 
+  - HBase-Master: Koordinierung der Region Server
+  
 TODO
-- Eigenschaften
-- Partitioner
-- Wie würde man eine Zeitreihen Datenbank anlegen?
 
 # Hadoop Framework
 - Nutzt HDFS und HBase
@@ -198,11 +287,25 @@ TODO
 - Open Source Variante der Google-Produkte
 - ...
 
-# MongoDB
+
+# Cassandra Datenbank
+- Spaltenbasiert
+- Nutzt Chord-Ring
+
 TODO
+- Eigenschaften
+- Partitioner
+- Wie würde man eine Zeitreihen Datenbank anlegen?
+
+
+# MongoDB 
+TODO
+- Dokumente im JSON Format (Je Dokument Key/Value Speicher)
+
 
 # Entscheidungsbaum/DB-Scan
 TODO
+- Ist damit der Merkle-Tree gemeint? VL4 Folie 279
 
 # Clustering
 TODO
