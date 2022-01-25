@@ -649,6 +649,9 @@ Eigenschaften
 
 Aus VL 4 Folie 230ff.
 
+Skalierbare Suche
+- Mit jedem Hop
+
 TODO
 - Erklärung
 - Übungsaufgabe 
@@ -733,7 +736,8 @@ public class MapClass extends Mapper<LongWritable, Text, Text, IntWritable> {
   private final static IntWritable one = new IntWritable(1);
   private Text word = new Text();
   
-  public void map( LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+  @Override
+  public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
     String line = value.toString();
     StringTokenizer itr = new StringTokenizer(line.toLowerCase(Locale.ROOT).replace('.', ' '));
     while (itr.hasMoreTokens()) {
@@ -759,12 +763,11 @@ public class MapClass extends Mapper<LongWritable, Text, Text, IntWritable> {
  *      ("Welt", 1)
  *      ("Peter", 1)
  */
-public class ReduceClass extends
-        Reducer<Text, IntWritable, Text, IntWritable> {
+public class ReduceClass extends Reducer<Text, IntWritable, Text, IntWritable> {
   private IntWritable count = new IntWritable();
+  
   @Override
-  protected void reduce(Text key, Iterable<IntWritable> values,
-                        Context context) throws IOException, InterruptedException {
+  protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
     int sum = 0;
     for (IntWritable value : values) {
       sum += value.get();
@@ -786,10 +789,10 @@ public class ReduceClass extends
 
 </td></tr></table>
 </details>
-<details><summary><b>Yarn Sheduler (Yet Another Resource Negotiator)</b></summary>
+<details><summary><b>Yarn Scheduler (Yet Another Resource Negotiator)</b></summary>
 <table><tr><td>
 
-- Framework zur Verwaltung von Map-Reduce Tasks im Cluser
+- Framework zur Verwaltung von Map-Reduce Tasks im HDFS Cluster
 - Komponenten
   - Global Resource Manager (RM): Übernahme des Scheduling
   - Per-server Node Manager (NM): Überwachung und Anbindung eines einzelnen Nodes
@@ -912,6 +915,7 @@ Replikation:
 <table><tr><td>
 
 - Positioniert sich zwischen Key-Value-Speichern und RDBMS
+- Objektorientiert  
 - Dokumente im JSON Format (Je Dokument Key/Value Speicher)
 - Schemafrei, Skalierbar
 - Open Source
@@ -926,10 +930,29 @@ Aus VL12 Folie 735ff.
 
 </td></tr></table>
 </details>
-<details><summary><b>Entscheidungsbaum/DB-Scan</b></summary>
+<details><summary><b>Entscheidungsbaum</b></summary>
 <table><tr><td>
 
-TODO
+- Modell zur Klassifikation
+- Dafür wird aus Trainingsdaten eine Baumstruktur aufgebaut.
+
+Aufbau des Entscheidungsbaums:
+- Falls alle Sätze der Trainingsmenge richtig klassifiziert sind, setzte Klassifizierung C
+- Sonst:
+  - Bestimmte Attribut mit höchster Entropie (Informationsgehalt)
+  - Setze dieses Attribut als Wurzel  
+  - Erstelle Teilbäume mit den Teilmengen des Trainingsdatensatzes
+
+
+</td></tr></table>
+</details>
+<details><summary><b>DB-Scan (Density-Based Clustering)</b></summary>
+<table><tr><td>
+
+- Gruppierung der Punkte anhand der Dichte
+- Problematisch, wenn Dichte ungleich verteilt ist
+
+Aus VL 11 Folie 673ff.
 
 </td></tr></table>
 </details>
@@ -966,4 +989,4 @@ TODO VL4 Folie 270ff.
 
 
 
-Generiert am Tue Jan 25 21:28:19 UTC 2022
+Generiert am Tue Jan 25 21:39:38 UTC 2022
