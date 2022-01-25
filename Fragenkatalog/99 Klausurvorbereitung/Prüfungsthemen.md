@@ -164,6 +164,9 @@ Eigenschaften
 
 Aus VL 4 Folie 230ff.
 
+Skalierbare Suche
+- Mit jedem Hop
+
 TODO
 - Erklärung
 - Übungsaufgabe 
@@ -228,7 +231,8 @@ public class MapClass extends Mapper<LongWritable, Text, Text, IntWritable> {
   private final static IntWritable one = new IntWritable(1);
   private Text word = new Text();
   
-  public void map( LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+  @Override
+  public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
     String line = value.toString();
     StringTokenizer itr = new StringTokenizer(line.toLowerCase(Locale.ROOT).replace('.', ' '));
     while (itr.hasMoreTokens()) {
@@ -254,12 +258,11 @@ public class MapClass extends Mapper<LongWritable, Text, Text, IntWritable> {
  *      ("Welt", 1)
  *      ("Peter", 1)
  */
-public class ReduceClass extends
-        Reducer<Text, IntWritable, Text, IntWritable> {
+public class ReduceClass extends Reducer<Text, IntWritable, Text, IntWritable> {
   private IntWritable count = new IntWritable();
+  
   @Override
-  protected void reduce(Text key, Iterable<IntWritable> values,
-                        Context context) throws IOException, InterruptedException {
+  protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
     int sum = 0;
     for (IntWritable value : values) {
       sum += value.get();
@@ -275,8 +278,8 @@ public class ReduceClass extends
 - Räumliche Lokalität - Benachbarte Adressbereiche werden angesprochen.
 
 
-# Yarn Sheduler (Yet Another Resource Negotiator)
-- Framework zur Verwaltung von Map-Reduce Tasks im Cluser
+# Yarn Scheduler (Yet Another Resource Negotiator)
+- Framework zur Verwaltung von Map-Reduce Tasks im HDFS Cluster
 - Komponenten
   - Global Resource Manager (RM): Übernahme des Scheduling
   - Per-server Node Manager (NM): Überwachung und Anbindung eines einzelnen Nodes
@@ -367,6 +370,7 @@ Replikation:
 
 # MongoDB 
 - Positioniert sich zwischen Key-Value-Speichern und RDBMS
+- Objektorientiert  
 - Dokumente im JSON Format (Je Dokument Key/Value Speicher)
 - Schemafrei, Skalierbar
 - Open Source
@@ -379,8 +383,23 @@ Fazit
 
 Aus VL12 Folie 735ff.
 
-# Entscheidungsbaum/DB-Scan
-TODO
+# Entscheidungsbaum
+- Modell zur Klassifikation
+- Dafür wird aus Trainingsdaten eine Baumstruktur aufgebaut.
+
+Aufbau des Entscheidungsbaums:
+- Falls alle Sätze der Trainingsmenge richtig klassifiziert sind, setzte Klassifizierung C
+- Sonst:
+  - Bestimmte Attribut mit höchster Entropie (Informationsgehalt)
+  - Setze dieses Attribut als Wurzel  
+  - Erstelle Teilbäume mit den Teilmengen des Trainingsdatensatzes
+
+
+# DB-Scan (Density-Based Clustering)
+- Gruppierung der Punkte anhand der Dichte
+- Problematisch, wenn Dichte ungleich verteilt ist
+
+Aus VL 11 Folie 673ff.
 
 # Clustering
 TODO
