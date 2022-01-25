@@ -135,7 +135,7 @@ Sind aus dem Dynamo Paper entnommen
 <table><tr><td>
 
 
-- 3 dimensionale "Hast-Table"
+- 3 dimensionale "Hash-Table"
 - Ein Keyspace beinhaltet Column Families und regelt deren Repilkationsart
 - Jede Zeile besitzt einen Key und besteht aus Spalten (Namen müssen nicht vorher festgelegt sein)
 - Jede Spalte hat einen Namen und einen value Wert + Timestamp
@@ -874,4 +874,4 @@ TODO VL4 Folie 270ff.
 
 
 
-Generiert am Tue Jan 25 10:37:13 UTC 2022
+Generiert am Tue Jan 25 12:45:31 UTC 2022
