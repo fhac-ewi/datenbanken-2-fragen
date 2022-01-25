@@ -30,7 +30,7 @@ Sind aus dem Dynamo Paper entnommen
 
 # Datenmodell
 
-- 3 dimensionale "Hast-Table"
+- 3 dimensionale "Hash-Table"
 - Ein Keyspace beinhaltet Column Families und regelt deren Repilkationsart
 - Jede Zeile besitzt einen Key und besteht aus Spalten (Namen müssen nicht vorher festgelegt sein)
 - Jede Spalte hat einen Namen und einen value Wert + Timestamp
