@@ -940,7 +940,7 @@ TODO
 
 </td></tr></table>
 </details>
-<details><summary><b>Sloppy Quorum</b></summary>
+<details><summary><b>Quorum und sloppy Quorum</b></summary>
 <table><tr><td>
 
 - Nicht alle Replicas eines Datensatzes müssen bei Schreibvorgängen aktualisiert werden. Es ist "schlampig"
@@ -949,6 +949,15 @@ TODO
 - Bei lesendem Zugriff müssen R Knoten antworten, damit Wert als gelesen gilt.
 - Bei schreibendem Zugriff müssen W Knoten den Schreibvorgang bestätigen.
 - Wenn R+W > N ist Konsistenz erfüllt.
+- Vorteil: Die Performance steigt
+
+- Problem1: wenn es zu bestimmten Partitionen kommt kann es dazu komme das keine Write/Read Quoren erreicht werden können
+- Ausfall von einzelen Knoten kann zum Problem werden. 
+
+Eine Lösung: Sloppy Quorum
+- Beim Ausfall von Knoten, können andere ihre Aufgabe übernehmen
+- Quorum-Bedingung wird erfüllt, aber wir erlauben Knoten die nicht im besitzt der richtige Information sind
+- Hinted Handoff wir angewandt: Kommt der Knoten wieder zurück und bekommt eine Hint vom Vertreter das er wieder seine Rolle als Replika wahrnehmen soll.
 - Vorteil: Einzelne Knoten können temporär ausfallen.
 
 TODO VL4 Folie 270ff.
@@ -957,4 +966,4 @@ TODO VL4 Folie 270ff.
 
 
 
-Generiert am Tue Jan 25 21:12:13 UTC 2022
+Generiert am Tue Jan 25 21:28:19 UTC 2022
