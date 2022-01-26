@@ -463,10 +463,7 @@ Ein Datenbankmanagementsystem (DBMS) ist die Gesamtheit aller Programme zur Erze
 - Dies kann Integrationsprobleme auf höheren Ebenen verursachen
 - Zugriff auf gesamte Daten nicht einzelne Tupel
 
-Aufbau
-- Star Schema
-- Snowflake
-- Fact Constellations
+![img.png](./Fragenkatalog/99%20Klausurvorbereitung/img.png)
 
 Welche Daten kommen da rein?
 - Alle Daten (historische und aktuelle)
@@ -477,8 +474,15 @@ Besonderheit dieser Daten?
 - Relevante Unternehmensdaten
 
 Wie kann das Schema aufgebaut sein?
-- Star Schema, Snowflake, Fact Constellations
-TODO
+- Star Schema
+  - Besteht aus Faktentabellen und Dimensionstabellen
+  - Faktentabelle enthält übergeordnete Informationen (z.B. Verkaufszahlen)
+  - Dimensionstabelle enthält Basisdaten (z.B. Verkäufe)
+- Snowflake
+  - Verfeinerung des Star Schemas 
+- Fact Constellations
+  - Mehrere Faktentabellen teilen sich gleiche Dimensionstabellen
+
 
 Welche Operation führt man da durch?
 - READ überwiegend für Data Mining & Data Analysis
@@ -1060,4 +1064,4 @@ TODO VL 4 PDF seite 33, 40
 
 
 
-Generiert am Wed Jan 26 14:58:45 UTC 2022
+Generiert am Wed Jan 26 19:19:21 UTC 2022
