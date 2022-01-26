@@ -1035,17 +1035,29 @@ VL4 Folie 270ff.
 <details><summary><b>Bloom Filter</b></summary>
 <table><tr><td>
 
-TODO oder egal?
+- Teil in Cassandra
+- Datenstruktur zur Ermittlung welche Daten schon mal vorgekommen sind und welche erstmals auftreten
 
 </td></tr></table>
 </details>
 <details><summary><b>Chord Ring Übungsaufgaben</b></summary>
 <table><tr><td>
 
+- Fingertabelle aufstellen
+  - Zuerst Bereiche definieren (immer 2er Potenz addieren)
+  - Nächsten Knoten je "Bereich von" ermitteln
+- Hinzufügen
+  - In Fingertablle nach Bereich für neuen Knoten suchen & an diesen weiterleiten
+- Stabilisierungsverfahren
+  - Nachfolger nach seinem Vorgänger fragen
+  - Wird in regelmäßigen Abständen ausgeführt
+  
+  
+  
 TODO VL 4 PDF seite 33, 40
 </td></tr></table>
 </details>
 
 
 
-Generiert am Wed Jan 26 13:59:30 UTC 2022
+Generiert am Wed Jan 26 14:58:45 UTC 2022
