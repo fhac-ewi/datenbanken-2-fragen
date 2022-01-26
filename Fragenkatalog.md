@@ -450,7 +450,7 @@ Ein Datenbankmanagementsystem (DBMS) ist die Gesamtheit aller Programme zur Erze
 <details><summary><b>Data Warehouse</b></summary>
 <table><tr><td>
 
-- Eine übergreifende, Zentrale Datenbasis
+- Eine übergreifende, zentrale Datenbasis
 - Optimiert für Einfüge- und Lese-Operationen, nicht für Transaktionen
 - Extract, Transform, Load (ETL) Tools
 - eine entscheidungsunterstützende Datenbank die zusätzlich und separat von den Datenbanken des Unternehmens gepflegt wird
@@ -461,6 +461,7 @@ Ein Datenbankmanagementsystem (DBMS) ist die Gesamtheit aller Programme zur Erze
 - Data Warehouses können aus kleineren Einheiten, sogenannten Data Marts gebildet werden
 - Data Marts sind kleine Einheiten des Unternehmens wie z.B. Marketing, Verkauf etc.
 - Dies kann Integrationsprobleme auf höheren Ebenen verursachen
+- Zugriff auf gesamte Daten nicht einzelne Tupel
 
 Aufbau
 - Star Schema
@@ -468,12 +469,21 @@ Aufbau
 - Fact Constellations
 
 Welche Daten kommen da rein?
+- Alle Daten (historische und aktuelle)
+- mittels ETL Tools (Extract, Transform, Load) aus allen Datenquellen
 
 Besonderheit dieser Daten?
+- Daten sind idR verdichtet
+- Relevante Unternehmensdaten
 
 Wie kann das Schema aufgebaut sein?
+- Star Schema, Snowflake, Fact Constellations
+TODO
 
 Welche Operation führt man da durch?
+- READ überwiegend für Data Mining & Data Analysis
+- WRITE zum einmaligen Befüllen
+- WRITE once, READ many
 
 Aus VL1
 
@@ -531,10 +541,11 @@ Versuch der Skalierung von RDBMS
 - Schreibzugriffe erzeugen neue Version der Daten
 - WRITEs deshalb ohne Sperren
 - UPDATEs (in Place) gibt es nicht -> WRITE mit neuer Versionsnummer
-- Folge: Hoher Datendurchsatz aufgrund wenigerer Sperren möglich
+- Folge: Hoher Datendurchsatz aufgrund weniger Sperren möglich
 
 Funktionsweise 
 - Nutzung von Zeitstempeln für Daten und Transaktionen
+- READ Zugriffe erzeugen keine Sperre
 - Lese- und Schreibzeitstempel je Version
 - Anhand der Zeitstempel Ermittlung der neusten Version; ggf. Abort der Schreiboperation
 
@@ -563,38 +574,34 @@ Schlüsseleigenschaften
 - Nicht Relational
 - Schema-Frei
 - Verteilt und horizontal skalierbar (Scale out)
-- Open Source
+- Open Source (aus VL)
 - Einfach bei Datenreplikation
 - Zumeist einfache Programmierschnittstellen
-- Verfolgt BASE (eventuell konsistent)
+- Verfolgt BASE (eventuell konsistent, aus VL)
 
 Aus VL 3 Folie 169ff
 
 </td></tr></table>
 </details>
-<details><summary><b>ACID vs BASE vs CAP</b></summary>
+<details><summary><b>ACID vs BASE</b></summary>
 <table><tr><td>
 
-Konzepte von Datenbanken
-- ACID
+Integritätsmodelle von Datenbanken
+- ACID (relationale Datenbanken)
   - Atomarität (Ganze Transaktion erfolgreich oder gar nicht)
   - Konsistenz (DB wird in valid Zustand hinterlassen)
-  - Isolation ()
+  - Isolation (Parallele Transaktionen verhalten sich so, als würden diese nacheinander passieren)
   - Dauerhaftigkeit (Committed = gespeichert, auch bei Stromausfall)
 - BASE    
   - Basic Available (Anwendung funktioniert immer, manchmal mit geringerer Konsistenz)
-  - Soft State ()
+  - Soft State (Zustand nicht zu jedem Zeitpunkt eindeutig)
   - Eventual Consistency  (Irgendwann konsistent..)
-- CAP
-  - Consistency
-  - Availability
-  - Partition Tolerance
     
 Aus VL 3 Folie 17x ff.
 
 </td></tr></table>
 </details>
-<details><summary><b>Überblick Populäre NoSQL Datenbanken</b></summary>
+<details><summary><b>Überblick populäre NoSQL Datenbanken</b></summary>
 <table><tr><td>
 
 - Key/Value Speicher
@@ -602,10 +609,11 @@ Aus VL 3 Folie 17x ff.
   - Redis  
 - Datei orientiert
   - MongoDB (*)
+  - CouchDB
 - Spalten orientiert
   - Google Big Table
-  - Cassandra
-  - HBase
+  - Cassandra (*)
+  - HBase (*)
     
 Aus VL 3 Folie 193
 
@@ -620,7 +628,7 @@ Funktion
 - Speicherung eines Wertes zu einem Schlüssel
 - Key meist gehasht
 - Schnittstellen: PUT, GET, DELETE
-- Scale Out möglich, da Key-Value-Paare auch verschiedenen Rechnern gespeichert werden können.
+- Scale Out möglich, da Key-Value-Paare auf verschiedenen Rechnern gespeichert werden können.
 
 Ansätze
 - Master-Directory
@@ -639,7 +647,7 @@ Ansätze
 <details><summary><b>Chord-Ring</b></summary>
 <table><tr><td>
 
-- Alternative eines Key-Value-Speichers
+- Variante eines Key-Value-Speichers (Alternative zu Master/Slave Ansatz)
 - Ermöglicht das Auffinden von Daten in einem verteilten Speicher (Auch bei Hinzunahme/Ausfall einzelner Knoten)
 
 Eigenschaften
@@ -650,11 +658,7 @@ Eigenschaften
 Aus VL 4 Folie 230ff.
 
 Skalierbare Suche
-- Mit jedem Hop
-
-TODO
-- Erklärung
-- Übungsaufgabe 
+- Mit jedem Hop wird die Distanz zum Zielknoten mindestens halbiert
 
 
 </td></tr></table>
@@ -664,23 +668,33 @@ TODO
 
 - Key-Value-Speicher mit PUT & GET
 - Verfolgt das Chord-Prinzip zum Auffinden der Knoten
-- Replikation zur Verbesserung der Ausfallsicherheit  
-- Virtual Nodes zur gleichmäßigeren Bestückung des Chord Rings -> Leistungsfähiger
+- Replikation zur Verbesserung der Ausfallsicherheit
+- Virtual Nodes zur gleichmäßigeren Bestückung des Chord Rings -> Leistungsfähiger/Load Balancing
+- (ACID)
 
 </td></tr></table>
 </details>
 <details><summary><b>Spaltenbasierten bzw. Wide Column Databases (Zusammensetzung der KEy Value Speicher)</b></summary>
 <table><tr><td>
 
-- Zu einem Key (Row-Number) mehrere Werte stehen.
-- 2 Dimensionen (quasi doppelte HashMap)
+- Zu einer Row-ID (Key) gibt es mehrere Spalten
+- Speicherung Spaltenorientiert (Alle Werte in einer Spalte stehen zusammen)
+- Column Families
+  - Gruppierung mehrerer Columns
+  - Speicherung der Row-ID + Column 1 Family A + Column 2 Family A ... Row-ID + Column 1 Family B + Column 2 Family B
 
 </td></tr></table>
 </details>
 <details><summary><b>CAP Theorem</b></summary>
 <table><tr><td>
 
-TODO
+- Dreieck aus 
+  - Consistency
+  - Availability
+  - Partition Tolerance
+- Systeme erfüllen immer zwei davon 
+
+Aus VL 3 Folie 179
 
 </td></tr></table>
 </details>
@@ -695,12 +709,6 @@ TODO
 
 Aus VL6 Folie 323ff.
 
-
-
-TODO
-- Eigenschaften
-- Konzept
-
 </td></tr></table>
 </details>
 <details><summary><b>Map & Reduce</b></summary>
@@ -708,14 +716,11 @@ TODO
 
 - Scaling-out-Ansatz (mehrere Computer bearbeiten Teil der Anfrage)
 - Parallele Verarbeitung
-- Input Key-Value-Paare & Output Key-ValuePaare
+- Input Key-Value-Paare & Output Key-Value-Paare
 - Signaturen
   - Mapper: `(K1, V1) -> list(K2, V2)`
   - Reducer: `(K2, list(V2)) -> list(K3, V3)`
   - Java Signatur: `void map(K1 key, V1 value, Mapper.Context context) throws IOException, InterruptedException`
-
-TODO
-- Besonderheiten 
 
 Beispiel Word Count [see](https://github.com/V3lop5/Hadoop-WordCount/blob/master/src/main/java/MapClass.java)
 ```java
@@ -758,10 +763,10 @@ public class MapClass extends Mapper<LongWritable, Text, Text, IntWritable> {
  *      ("Welt", [1])
  *      ("Peter", [1])
  *      
- * den Output (key: text, value: int)
- *      ("Hallo", 2)
- *      ("Welt", 1)
- *      ("Peter", 1)
+ * den Output [(key: text, value: int)]
+ *      [("Hallo", 2)]
+ *      [("Welt", 1)]
+ *      [("Peter", 1)]
  */
 public class ReduceClass extends Reducer<Text, IntWritable, Text, IntWritable> {
   private IntWritable count = new IntWritable();
@@ -820,6 +825,9 @@ Aus VL8 Folie 416
 - In Echtzeit Daten als Stream
 - Hohe Geschwindigkeit -> Dank Arbeitsspeicher
 - Keine persistente Datenspeicherung -> Alles geschieht im Arbeitsspeicher
+- Für OLAP geeignet
+  - Spark stellt ML Bibliotheken als Analysemethoden bereit
+  - Streaming
 
 Aus VL12
 
@@ -831,7 +839,7 @@ Aus VL12
 - Datenflussorientierte Scriptsprache
 - Für Programmierer (zum Abruf einzelner Tupel)
 - Client für Hadoop
-- Alternative zu Map/Reduce
+- Höhere Abstraktion von Map/Reduce
 - Ermöglicht Joins
 - Operationen
   - LOAD - Laden von Daten
@@ -839,6 +847,7 @@ Aus VL12
   - GROUP - Gruppierung
   - DUMP - Ausgabe
   - AVG/MIN/MAX/.. - Aggregationen
+- Ausführung auf Clientseite (erzeugt Map/Reduce Task auf Server)
   
 Aus VL 9 Folie 450ff.
 
@@ -847,12 +856,12 @@ Aus VL 9 Folie 450ff.
 <details><summary><b>HIVE (Abfragesprache für Hadoop)</b></summary>
 <table><tr><td>
 
-- erlaubt SQL Nutzung
+- Hive Query Language ähnlich zu SQL
 - Für Data Analysts
 - Client für Hadoop
 - Ermöglicht Abfragen, wie von relationalen Datenbanken bekannt
-- Hive Query Language ähnlich zu SQL
 - Im Prinzip ein Data Warehouse
+- Ausführung auf Serverseite
   
 Aus VL 9 Folie 465ff.
 
@@ -865,11 +874,13 @@ Aus VL 9 Folie 465ff.
 - Basiert auf HDFS & adressiert dessen Nachteile
 - Sinnvoll für Random Read/Write
 - Versuch einer spaltenorientierten Datenbank
+- Spalten in Regions gespeichert   
 - HBase besteht aus
   - Region Server: Stellt Datenregionen bereit 
   - HBase-Master: Koordinierung der Region Server
+  - (Zookeeper: System Manager aller Server für HBase und HDFS)
   
-TODO
+Aus VL 7 Folie 375
 
 </td></tr></table>
 </details>
@@ -879,8 +890,8 @@ TODO
 - Nutzt HDFS und HBase
 - Laufzeitumgebung MapReduce mit verschiedenen Tools HIVE, PIG, Zookeeper
 - Open Source Variante der Google-Produkte
-- ...
 
+Aus VL 6 Folie 320ff.
 
 </td></tr></table>
 </details>
@@ -894,9 +905,8 @@ TODO
 - Deshalb: Skalierbare & fehlertolerante Datenbank
 - Consistency für WRITE und READ getrennt einstellbar (Definition, wie viele Replicas abgefragt werden.)
 - WRITE often, READ less
-
-TODO
-- Eigenschaften
+- Im Gegensatz zu Hadoop ist Cassandra Standalone
+- Abfragesprache: CQL (Cassandra Query Language)
 
 Partitioner:
 - Random Partitioner: Die Schlüssel werden gleichmäßig über die Nodes verteilt (wie bei DynamoDB und default in Cassandra)
@@ -906,8 +916,11 @@ Replikation:
 - Simple Strategy: Replikas im Uhrzeigersinn (wie bei DynamoDB)
 - Networkt Topology Strategy: Replikas werden auf anderen Racks oder Datenzentren verteilt 
 
-- Wie würde man eine Zeitreihen Datenbank anlegen?
+Wie würde man eine Zeitreihendatenbank anlegen?
+- Mittels CQL
+- Order Perserving Partitioner mit Event-Time absteigend
 
+Aus VL 10 Folie 551
 
 </td></tr></table>
 </details>
@@ -915,7 +928,7 @@ Replikation:
 <table><tr><td>
 
 - Positioniert sich zwischen Key-Value-Speichern und RDBMS
-- Objektorientiert  
+- Objektorientiert
 - Dokumente im JSON Format (Je Dokument Key/Value Speicher)
 - Schemafrei, Skalierbar
 - Open Source
@@ -939,9 +952,9 @@ Aus VL12 Folie 735ff.
 Aufbau des Entscheidungsbaums:
 - Falls alle Sätze der Trainingsmenge richtig klassifiziert sind, setzte Klassifizierung C
 - Sonst:
-  - Bestimmte Attribut mit höchster Entropie (Informationsgehalt)
+  - Bestimmte Attribut mit höchstem Informationsgehalt/Entscheidungssicherheit (geringe Entropie)
   - Setze dieses Attribut als Wurzel  
-  - Erstelle Teilbäume mit den Teilmengen des Trainingsdatensatzes
+  - Teile Trainingsmenge in entsprechende Teilmengen und erstellte Teilbäume
 
 
 </td></tr></table>
@@ -951,42 +964,88 @@ Aufbau des Entscheidungsbaums:
 
 - Gruppierung der Punkte anhand der Dichte
 - Problematisch, wenn Dichte ungleich verteilt ist
+- Drei Arten von Punkten
+  - Core Points: Wenn Radius um Punkt eine Mindestanzahl an Punkten enthält.
+  - Boarder Points: Wenn Radius um Punkt Core Points einschließt, aber Mindestanzahl an Punkten nicht erfüllt ist.
+  - Noise Points: Wenn Radius um Punkt keine Core Points enthält & auch nicht die Mindestanzahl erfüllt.
 
 Aus VL 11 Folie 673ff.
+
+Alternativen:
+
 
 </td></tr></table>
 </details>
 <details><summary><b>Clustering</b></summary>
 <table><tr><td>
 
-TODO
+- Unsupervised Learning
+- Grundidee des Algorithmus
+  1. Berechne die Abstandsmatrix
+  2. Initialisiert Cluster mit jeweils einen Punkt
+  3. REPEAT
+     1. MERGE der beiden nächsten Cluster
+     2. UPDATE der Abstandsmatrix
+  4. UNTIL Anzahl der gewünschten Cluster erreicht
+- Verfahren
+  - hierarchical
+  - k-means
+  - x-means
+  - k-medoid
+  - fuzzy c-mean
+
+Aus VL 11 
 
 </td></tr></table>
 </details>
-<details><summary><b>Quorum und sloppy Quorum</b></summary>
+<details><summary><b>Quorum</b></summary>
 <table><tr><td>
 
-- Nicht alle Replicas eines Datensatzes müssen bei Schreibvorgängen aktualisiert werden. Es ist "schlampig"
+- Nicht alle Replicas eines Datensatzes müssen bei Schreibvorgängen direkt aktualisiert werden. (Können asynchron zu einem späteren Zeitpunkt erfolgen.)
 - Konfiguration über Tupel (N, R, W)
 - In Summe gibt es N Knoten (bzw. Replicas, die eine Kopie der Datei gespeichert haben).
 - Bei lesendem Zugriff müssen R Knoten antworten, damit Wert als gelesen gilt.
 - Bei schreibendem Zugriff müssen W Knoten den Schreibvorgang bestätigen.
-- Wenn R+W > N ist Konsistenz erfüllt.
-- Vorteil: Die Performance steigt
+- Wenn R+W > N ist Konsistenz erfüllt. (Überschneidung = Konsistenz)
+- (Manchmal auch W > N/2)
+- Vorteil: Die Performance steigt, weil nicht alle Replika direkt aktualisiert werden müssen
 
-- Problem1: wenn es zu bestimmten Partitionen kommt kann es dazu komme das keine Write/Read Quoren erreicht werden können
-- Ausfall von einzelen Knoten kann zum Problem werden. 
+- Problem1: wenn es zu bestimmten Partitionen kommt, kann es dazu kommen das keine Write/Read Quoren erreicht werden können.
+- Ausfall von einzelnen Knoten kann zum Problem werden. 
 
 Eine Lösung: Sloppy Quorum
-- Beim Ausfall von Knoten, können andere ihre Aufgabe übernehmen
-- Quorum-Bedingung wird erfüllt, aber wir erlauben Knoten die nicht im besitzt der richtige Information sind
-- Hinted Handoff wir angewandt: Kommt der Knoten wieder zurück und bekommt eine Hint vom Vertreter das er wieder seine Rolle als Replika wahrnehmen soll.
+
+VL4 Folie 270ff.
+
+</td></tr></table>
+</details>
+<details><summary><b>Sloppy Quorum</b></summary>
+<table><tr><td>
+
+- Beim Ausfall von Knoten können andere ihre Aufgabe übernehmen
+- Quorum-Bedingung wird erfüllt. Aber wir erlauben Knoten, die nicht im Besitz der richtigen Information sind
+- Hinted Handoff wird angewandt: Kommt der Knoten wieder zurück und bekommt eine Hint vom Vertreter das er wieder seine Rolle als Replika wahrnehmen soll.
 - Vorteil: Einzelne Knoten können temporär ausfallen.
 
-TODO VL4 Folie 270ff.
+- **Achtung**: Während ein Knoten ausgefallen ist, kann theoretisch eine Inkonsistenz vorliegen.
+- Deshalb auch `Sloppy`
+
+</td></tr></table>
+</details>
+<details><summary><b>Bloom Filter</b></summary>
+<table><tr><td>
+
+TODO oder egal?
+
+</td></tr></table>
+</details>
+<details><summary><b>Chord Ring Übungsaufgaben</b></summary>
+<table><tr><td>
+
+TODO VL 4 PDF seite 33, 40
 </td></tr></table>
 </details>
 
 
 
-Generiert am Tue Jan 25 21:39:38 UTC 2022
+Generiert am Wed Jan 26 13:59:30 UTC 2022
