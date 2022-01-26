@@ -466,7 +466,19 @@ VL4 Folie 270ff.
 - Deshalb auch `Sloppy`
 
 # Bloom Filter
-TODO oder egal?
+- Teil in Cassandra
+- Datenstruktur zur Ermittlung welche Daten schon mal vorgekommen sind und welche erstmals auftreten
 
 # Chord Ring Übungsaufgaben
+- Fingertabelle aufstellen
+  - Zuerst Bereiche definieren (immer 2er Potenz addieren)
+  - Nächsten Knoten je "Bereich von" ermitteln
+- Hinzufügen
+  - In Fingertablle nach Bereich für neuen Knoten suchen & an diesen weiterleiten
+- Stabilisierungsverfahren
+  - Nachfolger nach seinem Vorgänger fragen
+  - Wird in regelmäßigen Abständen ausgeführt
+  
+  
+  
 TODO VL 4 PDF seite 33, 40
